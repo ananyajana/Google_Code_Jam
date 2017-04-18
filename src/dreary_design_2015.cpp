@@ -19,7 +19,7 @@ int main()
                 if(0 == V)
                 	total = K + 1;
                 else
-                	total = 3 * (V + 1) * (V + 1) * (K - V + 1) + ((V * (V + 1) * ( 2 * V + 1)) / 2)  - 2;
+                	total = ((3 * V * V) + 3 * V + 1) * (K - V + 1) + ((V * (V + 1) * ( 2 * V + 1)) / 2)  - (2 * V);
                 	//total = K + 1 + (V * (V + 1) * (3 * K - 2 * V + 2));
                 
                 printf("Case #%d: %llu\n", t, total);
