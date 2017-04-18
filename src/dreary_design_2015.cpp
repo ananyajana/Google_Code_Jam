@@ -16,11 +16,8 @@ int main()
         for(int t = 1; t <= T; ++t){
         		//scan the number of color levels and the max permissible difference in color levels to be bland
                 fscanf(fp, "%llu %llu", &K, &V);
-                if(0 == V)
-                	total = K + 1;
-                else
-                	total = ((3 * V * V) + 3 * V + 1) * (K - V + 1) + ((V * (V + 1) * ( 2 * V + 1)) / 2)  - (2 * V);
-                	//total = K + 1 + (V * (V + 1) * (3 * K - 2 * V + 2));
+                total = ((3 * V * V) + 3 * V + 1) * (K - V + 1) + (((V - 1) * V * ( 2 * V - 1)) / 2) + ((3 * ( V - 1) * V) / 2 ) + V;
+                    //total = K + 1 + (V * (V + 1) * (3 * K - 2 * V + 2));
                 
                 printf("Case #%d: %llu\n", t, total);
         }
