@@ -45,7 +45,7 @@ int main()
         fscanf(fp, "%ld", &D);
     	
         if(D <= 4){	// if the number of digits is 4 or less, then Anima would be silent
-        	printf("Case #%d: ....\n", t);
+        	printf("Case #%d: ...\n", t);
         }
         else{
         	char* print_string = NULL;
