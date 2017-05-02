@@ -7,14 +7,14 @@
 int memo[26][26] = {-1};	// initializing the memoization array with a value of -1
 
 int rec_solve(int r, int c){
-	if((r == 1) || (c == 1))
+	if((r == 1) || (c == 1))	//if the number of rows or columns equals 1, then there is only one possible path
 		return 1; 
-	if(memo[r][c] != -1)
+	if(memo[r][c] != -1)		//if the memoization entry is different from -1, then it has already been calculated and updated, so return it
 		return memo[r][c];
 		
 	int ans = 0;
-	for(int i = 1; i <= r; ++i)
-		ans += rec_solve(c - 1, i);
+	for(int i = 1; i <= r; ++i)	
+		ans += rec_solve(c - 1, i);	// the actual recursion
 	memo[r][c] = ans;
 	return ans;
 }
