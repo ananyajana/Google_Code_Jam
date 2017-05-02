@@ -1,6 +1,12 @@
 /*  Google Code Jam I/O women 2015, problem C: Power Levels
-Solution:
-*/
+Solution: Pre calculating the logarithm(10 base) of all numbers
+from 1 to 9000 and storing the values in an array. This gives
+the number of digits in each number from 1 to 9000. Next, we
+find out the number of digits in multifactorials of 9000 by
+adding relevant logarithm values from the previous array.
+Search the array for the 1st number of digits which is just
+below the power level of the opponent. */
+
 
 
 #include <stdio.h>
