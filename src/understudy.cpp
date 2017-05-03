@@ -1,3 +1,4 @@
+/* Author: Ananya Jana */
 #include <stdio.h>
 #include <stdlib.h>
 
