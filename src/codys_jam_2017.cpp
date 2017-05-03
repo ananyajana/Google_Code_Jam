@@ -1,4 +1,5 @@
 /*  Google Code Jam I/O women 2017, problem A: Cody's Jam
+Author:Ananya Jana
 */
 
 #include <stdio.h>

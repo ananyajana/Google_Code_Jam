@@ -5,7 +5,8 @@ the number of digits in each number from 1 to 9000. Next, we
 find out the number of digits in multifactorials of 9000 by
 adding relevant logarithm values from the previous array.
 Search the array for the 1st number of digits which is just
-below the power level of the opponent. */
+below the power level of the opponent. 
+Author:Ananya Jana */
 
 
 

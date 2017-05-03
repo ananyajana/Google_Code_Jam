@@ -1,4 +1,5 @@
 /*  Google Code Jam I/O women 2015, problem D: Googlander
+Author:Ananya Jana
 */
 
 #include <stdio.h>

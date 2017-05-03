@@ -41,7 +41,8 @@ Total = combinations with minimum colour level as 0 +
 		   .
 		   .
 		   [ 3 * 1* 1 + 3 * 1 + 1 ]
-		   = [{(3 * V * V + 3 * V + 1)(K - V + 1)} + {(V - 1) * V * (2 * V - 1) / 2} + {3 * ( V - 1) V / 2} + V ] */
+		   = [{(3 * V * V + 3 * V + 1)(K - V + 1)} + {(V - 1) * V * (2 * V - 1) / 2} + {3 * ( V - 1) V / 2} + V ] 
+Author:Ananya Jana */
 
 
 #include <stdio.h>
