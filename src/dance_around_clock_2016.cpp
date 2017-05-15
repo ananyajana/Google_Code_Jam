@@ -36,7 +36,7 @@ int main()
         	N = N % temp;
 		}
 		
-		//calculate the initial partners of the dancer K
+		//calculate the initial partners of the dancer K, taking care if K = D or K = 1
 		if(K == D){
 			partner_left = K - 1;
 			partner_right = 1;
