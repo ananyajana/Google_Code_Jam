@@ -49,7 +49,30 @@ int main()
 			partner_left = K - 1;
 			partner_right = K + 1;
 		}
+		
+		// calculate the final partner numbers of K. 
+		if(K % 2 != 0){		//For odd numbered dancer increment the partner numbers by 2 at each turn
+			partner_left = (partner_left + N * 2) % D;
+			partner_right = (partner_right + N * 2) % D;		
+		}
+		else{		// For even numbered dancer, decrement the partner numbers by 2 at each turn
+			partner_left = (partner_left - N * 2) % D;
+			partner_right = (partner_right - N * 2) % D;
 			
-		printf("Case #%d:", t);
+			if(partner_left < 0){
+				partner_left *= -1;
+				partner_left %= D;
+			}
+			if(partner_right < 0){
+				partner_right *= -1;
+				partner_right %= D;
+			}	
+		}
+		if(partner_left % D == 0)	// There is no dancer numbered 0, Dancer number 0 would mean dancer number D
+			partner_left = D;
+		if(partner_right % D == 0)
+			partner_right = D;
+			
+		printf("Case #%d: %d %d\n", t, partner_left, partner_right);
     }
 }
