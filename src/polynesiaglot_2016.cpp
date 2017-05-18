@@ -1,4 +1,7 @@
 /*  Google Code Jam I/O women 2016, problem C: Polynesiaglot
+First find out the total number of words: (V+C) to the power L(since in any of the position we can have any of V+C letters)
+To calculate the total number of invalid words, we make  akey observation that for any word to be invald, there is at least
+one VV inside it or it ends with V
 Author:Ananya Jana
 */
 
