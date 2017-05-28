@@ -39,7 +39,7 @@ int main()
 {
     unsigned int T, C, V, L, i;
     T = C = V = L = 0;
-    unsigned long int num_words[MAX_VALUE] = {0};		// array for Memoization, initialized to all 0s.
+    unsigned long long int num_words[MAX_VALUE] = {0};		// array for Memoization, initialized to all 0s.
 
     FILE* fp = fopen("ip.txt", "r");
 
@@ -58,9 +58,10 @@ int main()
         // calculating the number of valid words of given length when L >= 2
         for(i = 2; i <= L; ++i){
 			// the recusrive formula for calculating the number of words
-        	num_words[i] = (V * (num_words[i - 1] + C * num_words[i - 2])) %  mod_val;
+        	//num_words[i] = (V * (num_words[i - 1] + C * num_words[i - 2])) %  mod_val;
+        	num_words[i] = (V * ((num_words[i - 1] + C * num_words[i - 2])%  mod_val)) %  mod_val;
 		}
         		
-		printf("Case #%d: %lu\n", t, num_words[L]);
+		printf("Case #%d: %llu\n", t, num_words[L]);
     }
 }
