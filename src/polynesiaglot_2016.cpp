@@ -30,21 +30,28 @@ Author:Ananya Jana
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_VALUE	501
+
 
 int main()
 {
-    int T, C, V, L, num_words;
-    T = C = V = L = num_words = 0;
+    unsigned int T, C, V, L, i;
+    T = C = V = L = 0;
+    unsigned long int num_words[MAX_VALUE] = {0};		// array for Memoization, initialized to all 0s.
 
     FILE* fp = fopen("ip.txt", "r");
 
     fscanf(fp, "%d", &T);
 
     for(int t = 1; t <= T; ++t){
-        fscanf(fp, "%d %d %d", &C, &V, &L);
+        fscanf(fp, "%u %u %u", &C, &V, &L);
+        num_words[0] = 1;
+        num_words[1] = V;
         
-        
-			
-		printf("Case #%d: %d\n", t, num_words);
+        for(i = 2; i <= L; ++i){
+        	num_words[i] = ((V * num_words[i - 1]) % 1000000007) + ((V * ((C * num_words[i - 2]) % 1000000007)) % 1000000007);
+		}
+        		
+		printf("Case #%d: %lu\n", t, num_words[L]);
     }
 }
