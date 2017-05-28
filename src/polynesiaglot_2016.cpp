@@ -29,8 +29,10 @@ Author:Ananya Jana
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_VALUE	501
+const int mod_val = 1000000007;
 
 
 int main()
@@ -44,12 +46,19 @@ int main()
     fscanf(fp, "%d", &T);
 
     for(int t = 1; t <= T; ++t){
+    	// clear the memoization array at the beginning of each execution
+    	memset(num_words, 0, MAX_VALUE);
+    	
         fscanf(fp, "%u %u %u", &C, &V, &L);
-        num_words[0] = 1;
+        
+        // set the base case values i.e. L = 0 and L = 1
+		num_words[0] = 1;
         num_words[1] = V;
         
+        // calculating the number of valid words of given length when L >= 2
         for(i = 2; i <= L; ++i){
-        	num_words[i] = ((V * num_words[i - 1]) % 1000000007) + ((V * ((C * num_words[i - 2]) % 1000000007)) % 1000000007);
+			// the recusrive formula for calculating the number of words
+        	num_words[i] = (V * (num_words[i - 1] + C * num_words[i - 2])) %  mod_val;
 		}
         		
 		printf("Case #%d: %lu\n", t, num_words[L]);
