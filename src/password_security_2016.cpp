@@ -22,7 +22,7 @@ int main()
     char** ptr = NULL;
     int str[MAX];	// array to keep count whether the character has appeared already or not
     char temp;
-    int flag = 0;
+    int flag = 0;	// ta take a decision on what is to be printed, possible values are- 0, 1, 2
 
 
     
@@ -33,8 +33,9 @@ int main()
 
     for(int t = 1; t <= T; ++t){
     	
-    	flag = 0;	// initialize the flag to determine whetherr such output string is impossible is set to false every time a test case begins
-    		//initialize the initial value in the str array to 1, this array keeps a count of whether the corresponding letter for an index is not yet seen in the input array
+    	flag = 0;	// initialize the flag to determine whether such output string is impossible. This is set to false every time a test case begins
+    	
+		//initialize the initial value in the str array to 1, this array keeps a count of whether the corresponding letter for an index is not yet seen in the input array
 		for(k = 0; k < MAX; ++k)
 			str[k] = 1;
     	
@@ -50,7 +51,7 @@ int main()
 				flag = 1;
     		else{	// if the string length is not 1, then we try to swap the first two characters of the string(only when N=1)
 				for(j = 0; j < strlen(ptr[i]); ++j){
-	    			--str[ptr[i][j]-'A'];	// decrement the count of the character in the count array
+	    			--str[ptr[i][j]-'A'];	// decrement the count in the count array for the characters which are present in the input string
 				}
 				
 				// swap the first two characters
@@ -61,7 +62,7 @@ int main()
 				//getting the input string length so that we can start appending the remaining chracters from the end of the input string
 				l = strlen(ptr[i]);
 				
-				for(k = 0; k < MAX; ++k){
+				for(k = 0; k < MAX; ++k){	// check the count array to see how many times a character has appeared in input string
 					if(str[k] < 0){		//if some character has appeared twice in the input string, it means the original string ABCDEFG... XYZ is sufficient, there is no need to append. So break out of traversal of count array
 						flag = 2;
 						break;
