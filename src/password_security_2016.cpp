@@ -44,7 +44,7 @@ int main()
 		for(i = 0; i < N; ++i){
     		ptr[i] = (char*)calloc((MAX+1),  sizeof(char)); //synamically allocate the space for the pointers to arrays
     		ptr[i][MAX] = '\0';
-    		fscanf(fp, "%s\n", ptr[i]);
+    		fscanf(fp, "%s", ptr[i]);
     	
 			if(strlen(ptr[i]) == 1)	// if the input string is of length 1, then then there is no string possible where the condition will be fulfilled
 				flag = 1;
