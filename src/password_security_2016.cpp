@@ -12,13 +12,15 @@ Author:Ananya Jana
 #include <stdlib.h>
 #include <string.h>
 
+#define	MAX	26
+
 
 
 int main()
 {
     int T, N, i, j, k, l;
     char** ptr = NULL;
-    int str[26];	// array to keep count whether the character has appeared already or not
+    int str[MAX];	// array to keep count whether the character has appeared already or not
     char temp;
     int flag = 0;
 
@@ -33,15 +35,15 @@ int main()
     	
     	flag = 0;	// initialize the flag to determine whetherr such output string is impossible is set to false every time a test case begins
     		//initialize the initial value in the str array to 1, this array keeps a count of whether the corresponding letter for an index is not yet seen in the input array
-		for(k = 0; k < 26; ++k)
+		for(k = 0; k < MAX; ++k)
 			str[k] = 1;
     	
     	fscanf(fp, "%d", &N);
     	ptr = (char**)calloc(N, sizeof(char*)); // allocate a pointer 2 a two dimensional dynamically allocated array
     	
 		for(i = 0; i < N; ++i){
-    		ptr[i] = (char*)calloc(27,  sizeof(char)); //synamically allocate the space for the pointers to arrays
-    		ptr[i][26] = '\0';
+    		ptr[i] = (char*)calloc((MAX+1),  sizeof(char)); //synamically allocate the space for the pointers to arrays
+    		ptr[i][MAX] = '\0';
     		fscanf(fp, "%s\n", ptr[i]);
     	
 			if(strlen(ptr[i]) == 1)	// if the input string is of length 1, then then there is no string possible where the condition will be fulfilled
@@ -59,7 +61,7 @@ int main()
 				//getting the input string length so that we can start appending the remaining chracters from the end of the input string
 				l = strlen(ptr[i]);
 				
-				for(k = 0; k < 26; ++k){
+				for(k = 0; k < MAX; ++k){
 					if(str[k] < 0){		//if some character has appeared twice in the input string, it means the original string ABCDEFG... XYZ is sufficient, there is no need to append. So break out of traversal of count array
 						flag = 2;
 						break;
