@@ -17,10 +17,12 @@ Author:Ananya Jana
 
 int main()
 {
-    int T, K, i;	//K is the size of the pancake flipper. 2 <= K <= S
+    int T = 0, K = 0, i = 0, len = 0;	//K is the size of the pancake flipper. 2 <= K <= S
     char *str = NULL;
-	    
+	
 	FILE* fp = fopen("ip.txt", "r");
+	
+	// if the file is not valid, exit
 	if(NULL == fp){
 		printf("Error, Can't open file");
 		exit(1);
@@ -28,10 +30,18 @@ int main()
 	
     fscanf(fp, "%d", &T);
 
-	str = (char*)callc(SIZE+1, sizeof(char));
+	str = (char*)calloc(SIZE+1, sizeof(char));
+	str[10] = '\0';
     for(int t = 1; t <= T; ++t){
-		//scan the string of happy faces and sad faces
-		fscanf(fp, "%s ", str);
-		fscanf(fp, "%d", &K);
-	}	
+		fscanf(fp, "%s ", str);		//scan the string of happy faces and sad faces
+		fscanf(fp, "%d", &K);		// scan the size/capacity of the ladle
+		
+		len = strlen(str);			// find the length of the string of happy faces and sad faces
+		//printf("length is : %d\n", len);
+		
+		memset(str, 0, len);	// clear the dynamically created array so that it can be used to hold the next string
+	}
+	
+	if(str)		// if the dynamically allocated array to hold the string exists, delete it
+		free(str);
 }
