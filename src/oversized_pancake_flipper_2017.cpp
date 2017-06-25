@@ -47,8 +47,9 @@ int main()
 			
 			while(str[i] == '+') // start traversing the array till we find the first sad face
 				++i;
-				
-			for(j = i; j < i + K; ++j){	// flip K faces starting from the sad face
+			if(str[i])
+				++flips;
+			for(j = i; str[j] && j < i + K; ++j){	// flip K faces starting from the sad face
 				if(str[j] == '+')
 					str[j] = '-';
 				else
@@ -56,8 +57,15 @@ int main()
 			}
 		}
 		flag = false;
-		printf("Now the string is: %s\n", str);
+		for(i = 0; i < len; ++i)
+			if(str[i] == '-')
+				flag = true;
 		
+		if(true == flag)
+			printf("Case #%d: IMPOSSIBLE\n", t);
+		else
+			printf("Case #%d: %d\n", t, flips);
+			
 		//traverse the string to determine if there is any sad face remaining
 		memset(str, 0, len);	// clear the dynamically created array so that it can be used to hold the next string	
 	}
