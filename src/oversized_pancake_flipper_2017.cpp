@@ -49,11 +49,13 @@ int main()
 				++i;
 			if(str[i])
 				++flips;
-			for(j = i; str[j] && j < i + K; ++j){	// flip K faces starting from the sad face
-				if(str[j] == '+')
-					str[j] = '-';
-				else
-					str[j] = '+';	
+			if(i + K <= len){	// check if we can use the ladle for flipping at all
+				for(j = i; str[j] && (j < i + K); ++j){	// flip K faces starting from the sad face
+					if(str[j] == '+')
+						str[j] = '-';
+					else if(str[j] == '-')
+						str[j] = '+';	
+				}
 			}
 		}
 		flag = false;
