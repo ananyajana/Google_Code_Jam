@@ -20,7 +20,7 @@ int main()
 {
     int T = 0, K = 0, i = 0, j  = 0, len = 0, flips = 0;	//K is the size of the pancake flipper. 2 <= K <= S
     char *str = NULL;
-    bool flag = false;
+    bool flag = false;		// flag to tell whether there is any sad face in the string
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -61,7 +61,7 @@ int main()
 		}
 		flag = false;
 		for(i = 0; i < len; ++i)
-			if(str[i] == '-')
+			if(str[i] == '-')		// if there is any sad face after all transformations, set the flag to true
 				flag = true;
 		
 		if(true == flag)
