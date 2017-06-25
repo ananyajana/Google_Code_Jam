@@ -17,8 +17,9 @@ Author:Ananya Jana
 
 int main()
 {
-    int T = 0, K = 0, i = 0, len = 0;	//K is the size of the pancake flipper. 2 <= K <= S
+    int T = 0, K = 0, i = 0, j  = 0, len = 0, flips = 0;	//K is the size of the pancake flipper. 2 <= K <= S
     char *str = NULL;
+    bool flag = false;
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -32,14 +33,33 @@ int main()
 
 	str = (char*)calloc(SIZE+1, sizeof(char));
 	str[10] = '\0';
+	
     for(int t = 1; t <= T; ++t){
 		fscanf(fp, "%s ", str);		//scan the string of happy faces and sad faces
 		fscanf(fp, "%d", &K);		// scan the size/capacity of the ladle
 		
 		len = strlen(str);			// find the length of the string of happy faces and sad faces
 		//printf("length is : %d\n", len);
+		flips = 0;	// initialize the minimum number of flips required to zero
 		
-		memset(str, 0, len);	// clear the dynamically created array so that it can be used to hold the next string
+		//start flipping the sad faces into happy ones
+		for(i = 0; i <= len - K; ++i){
+			
+			while(str[i] == '+') // start traversing the array till we find the first sad face
+				++i;
+				
+			for(j = i; j < i + K; ++j){	// flip K faces starting from the sad face
+				if(str[j] == '+')
+					str[j] = '-';
+				else
+					str[j] = '+';	
+			}
+		}
+		flag = false;
+		printf("Now the string is: %s\n", str);
+		
+		//traverse the string to determine if there is any sad face remaining
+		memset(str, 0, len);	// clear the dynamically created array so that it can be used to hold the next string	
 	}
 	
 	if(str)		// if the dynamically allocated array to hold the string exists, delete it
