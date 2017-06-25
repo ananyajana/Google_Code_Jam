@@ -13,7 +13,8 @@ Author:Ananya Jana
 #include <stdlib.h>
 #include <string.h>
 
-#define SIZE	10
+//#define SIZE	10		// small input: maximum string length
+#define SIZE	1000	// large input: maximum string length
 
 int main()
 {
