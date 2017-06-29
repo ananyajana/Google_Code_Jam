@@ -1,4 +1,9 @@
 /*  Google Code Jam 2017, problem B: Tidy Numbers
+Check if the number is already a tidy number, if not
+get to the biggest tidy number by processing from the
+right side. At any time, take two contiguous digits and
+transform them to be tidy. Then move to the left and again
+process the two contiguous digits.
 Author:Ananya Jana
 */
 
@@ -8,9 +13,8 @@ Author:Ananya Jana
 
 int main()
 {
-    int T = 0, num;	//K is the size of the pancake flipper. 2 <= K <= S
-    char *str = NULL;
-    bool flag = false;		// flag to tell whether there is any sad face in the string
+    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0;	//num contains the biggest tidy number, input is the input number
+    bool flag = true;		// flag to check if the number is tidy
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -23,6 +27,24 @@ int main()
     fscanf(fp, "%d", &T);
 	
     for(int t = 1; t <= T; ++t){
-    	fscanf(fp, "%d", &num);
+    	fscanf(fp, "%d", &input);
+    	
+    	//check if the input number is tidy
+    	res = input;
+    	flag = true;
+    	digit_current = digit_prev = 9;	// initializing the values
+    	
+    	while(res){
+    		digit_prev = digit_current;
+    		digit_current = res % 10;
+    		//printf("digit_prev = %d, digit_current = %d\n", digit_prev, digit_current);
+    		if(digit_current > digit_prev)
+    			flag = false;
+    		res = res / 10;
+		}
+		if(false == flag)
+			printf("Not a tidy number.\n");
+		else
+			printf("Tidy number.\n");
 	}
 }
