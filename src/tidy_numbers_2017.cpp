@@ -10,11 +10,13 @@ Author:Ananya Jana
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX	4
 
 int main()
 {
-    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0, count = 0;	//num contains the biggest tidy number, input is the input number
-    bool flag = true;		// flag to check if the number is tidy
+    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0, count = 0, i = 0, k = 0, j = 0;	//num contains the biggest tidy number, input is the input number
+    bool flag = true, carry = false;		// flag is to check if the number is tidy, carry is to check whether the digit to the left of current digit is impacted
+    int digit[MAX];		// the number of digits can be maximum 4 in case of small input and 19 in case of large input
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -32,8 +34,10 @@ int main()
     	//check if the input number is tidy
     	res = input;
     	flag = true;
+    	carry = false;
     	digit_current = digit_prev = 9;	// initializing the values
     	count = 0;	// count of the number of digits in the number
+    	i  = k = 0;		// iterator for the digits array needs to be initialized to 0 for every input
     	
     	while(res){
     		digit_prev = digit_current;
@@ -43,11 +47,41 @@ int main()
     			flag = false;
     		res = res / 10;
     		count++;
+    		digit[i] = digit_current;
+    		i++;
 		}
-		if(false == flag)
-			printf("Not a tidy number.\n");
+		if(false == flag){
+			//printf("Not a tidy number.\n");
+
+			//printf("Number of digits = %d\n", count);
+			
+			for(k = 0; k < i ; ++k){
+				if(true == carry){
+					if(digit[k] == 0){
+						digit[k] = 9;					
+					}
+					else{
+						digit[k] = digit[k] - 1;
+						carry = false;
+					}
+				}
+				if(digit[k] == 0){
+					digit[k] = 9;
+					carry = true;
+				}
+				else if(digit[k] < digit[k + 1]){
+					digit[k] = 9;
+					carry = true;
+				}
+			}
+			
+			printf("Case #%d: ", t);
+			while(i--){
+				printf("%d",  digit[i]);
+			}
+			printf("\n");
+		}
 		else
-			printf("Tidy number.\n");
-		printf("Number of digits = %d\n", count);
+			printf("Case #%d: %d\n", t, input);
 	}
 }
