@@ -13,7 +13,7 @@ Author:Ananya Jana
 
 int main()
 {
-    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0;	//num contains the biggest tidy number, input is the input number
+    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0, count = 0;	//num contains the biggest tidy number, input is the input number
     bool flag = true;		// flag to check if the number is tidy
 	
 	FILE* fp = fopen("ip.txt", "r");
@@ -33,6 +33,7 @@ int main()
     	res = input;
     	flag = true;
     	digit_current = digit_prev = 9;	// initializing the values
+    	count = 0;	// count of the number of digits in the number
     	
     	while(res){
     		digit_prev = digit_current;
@@ -41,10 +42,12 @@ int main()
     		if(digit_current > digit_prev)
     			flag = false;
     		res = res / 10;
+    		count++;
 		}
 		if(false == flag)
 			printf("Not a tidy number.\n");
 		else
 			printf("Tidy number.\n");
+		printf("Number of digits = %d\n", count);
 	}
 }
