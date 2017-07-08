@@ -52,6 +52,8 @@ int main()
     		count++;
     		digit[i] = digit_current;
     		i++;
+    		if (max < digit_current)
+    			max = digit_current;
 		}
 		if(false == flag){
 			//printf("Not a tidy number.\n");
