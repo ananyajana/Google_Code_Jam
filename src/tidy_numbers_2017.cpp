@@ -3,7 +3,9 @@ Check if the number is already a tidy number, if not
 get to the biggest tidy number by processing from the
 right side. At any time, take two contiguous digits and
 transform them to be tidy. Then move to the left and again
-process the two contiguous digits.
+process the two contiguous digits. We need to keep track
+of the maximum digit as well, else the above login won't work
+for numbers like 1000.
 Author:Ananya Jana
 */
 
@@ -14,7 +16,8 @@ Author:Ananya Jana
 
 int main()
 {
-    int T = 0, input = 0, num = 0, digit_current = 9, digit_prev = 9, res = 0, count = 0, i = 0, k = 0, j = 0;	//num contains the biggest tidy number, input is the input number
+    int T, input, num, digit_current = 9, digit_prev = 9, res, count, i, k, j, max;	//num contains the biggest tidy number, input is the input number
+    T = num = res = count = i = k = j = max = 0
     bool flag = true, carry = false;		// flag is to check if the number is tidy, carry is to check whether the digit to the left of current digit is impacted
     int digit[MAX];		// the number of digits can be maximum 4 in case of small input and 19 in case of large input
 	
