@@ -1,4 +1,5 @@
 /*  Google Code Jam 2017, problem C: Bathroom Stalls
+Looks like divide and conquer mechanism ha to be applied.
 Author:Ananya Jana
 */
 
