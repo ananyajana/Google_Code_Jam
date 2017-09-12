@@ -10,6 +10,8 @@ Author:Ananya Jana
 
 int main()
 {
+	int N, K;
+	N = K = 0;
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -22,7 +24,7 @@ int main()
     fscanf(fp, "%d", &T);
 	
     for(int t = 1; t <= T; ++t){
-    	fscanf(fp, "%d", &input);
+    	fscanf(fp, "%d %d", &N, &K); // scanning the number of bathrooms and the number of people who will enter one by one
     	
     	
 	}
