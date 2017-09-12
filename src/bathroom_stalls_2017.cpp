@@ -1,5 +1,10 @@
 /*  Google Code Jam 2017, problem C: Bathroom Stalls
 Looks like divide and conquer mechanism ha to be applied.
+Probably gaps should be in sorted order, so that we don't
+need to process all gaps. Only the lasrgest gap(s) at any
+time are processed. Rest need not be processed.
+We do not need to process all the cells in a gap. We have to
+process only the middle cell(s).
 Author:Ananya Jana
 */
 
