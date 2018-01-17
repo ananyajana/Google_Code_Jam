@@ -13,8 +13,9 @@ Author:Ananya Jana
 int main()
 {
 	int N, T, len, i;
-	N = T = len = 0;
-	char arr[MAXLEN + 1];
+	N = T = 0;
+	char arr[MAXLEN + 1], ch;
+	ch = 'a';
 	
 	FILE* fp = fopen("ip.txt", "r");
 	
@@ -24,11 +25,29 @@ int main()
 		exit(1);
 	}
 	
-	fscanf(fp, "%d", &T);
+	fscanf(fp, "%d\n", &T);
 	
 	for(int t = 1; t <= T; ++t){
-    		fscanf(fp, "%s", &arr); // scanning the strings one by one
-    		len = strlen(arr);
+    		//fscanf(fp, "%c", &ch); // scanning the strings one by one
+    		
+    		for(i = 0; i < MAXLEN; ++i){
+    			arr[i] = '\0';
+    		}
+    		
+    		for(i = 0; i < MAXLEN; ++i){
+    			fscanf(fp, "%c", &ch);
+    			if(ch != '\n')
+    				arr[i] = ch;
+    			else 
+    				break;
+    		}
+    		arr[i] = '\0';
+    		//fscanf(fp, "%c", &ch);
+    		
+    		len = i;
+    		//printf("len = %d:\n", len);
+    		
+    		
     		printf("Case #%d:\n", t);
     		printf("+");
     		for(i = 1; i <= len + 2; ++i)
@@ -38,4 +57,6 @@ int main()
     			printf("-");
     		printf("+\n");
 	}
+	
+	fclose(fp);
 }
