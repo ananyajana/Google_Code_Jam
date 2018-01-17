@@ -45,6 +45,10 @@ int main()
     		//fscanf(fp, "%c", &ch);
     		
     		len = i;
+    		if(len == 0){
+    			--t;
+    			continue;
+    		}
     		//printf("len = %d:\n", len);
     		
     		
