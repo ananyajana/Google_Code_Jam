@@ -11,16 +11,10 @@ Author:Ananya Jana */
 
 void insertion_sort(int a[], int b[], int n);
 
-void max_heapify(int a[], int i);
-void build_max_heap(int a[]);
-void heap_sort(int a[]);
-
-//heap sz
-int size, sz;
 
 int main()
 {
-    int T, L, E, N, i, j, min_exp, overflow;
+    int T, L, E, N, i, j, min_exp, overflow, max;
     T = L = N = E = i = min_exp = overflow = 0;
 	int *N_arr, *E_arr = NULL;	// for the large dataset, a number can be of 10 digits, hence taking an array of long long integers
 
@@ -68,12 +62,20 @@ int main()
 	}
 	else{
 		for(i = 1; i < L; ++ i){
-			overflow = (N_arr[i] * E_arr[i]) - (N_arr[i - 1] + overflow); 
+			overflow = (N_arr[i - 1] + overflow) - (N_arr[i] * E_arr[i]);
+			if(overflow < 0)
+				overflow = 0;
 		}
-		if((overflow + N_arr[L - 1]) > E_arr[L - 1])
-			min_exp = E_arr[L - 1] + overflow + N_arr[L - 1];
+
+		/*max = (E_arr[L - 1] > N_arr[L - 1]) ? E_arr[L - 1] : N_arr[L - 1];
+		if(overflow > 0)
+			min_exp = max + overflow;
 		else
+			min_exp = max + 1;*/
+		if(E_arr[L - 1] >= (N_arr[L - 1] + overflow))
 			min_exp = E_arr[L - 1] + 1;
+		else
+			min_exp = N_arr[L - 1] + overflow;
 	}
 	
 	printf("Case #%d: %d\n", t, min_exp);
@@ -98,73 +100,5 @@ void insertion_sort(int a[], int b[], int n)
 			i = i - 1;
 		}
 		a[i + 1] = key;
-	}
-}
-
-void build_max_heap(int a[])
-{
-	int i;
-	for(i = (sz - 1)/2; i >= 0; --i){
-		//printf("i = %d\n", i);
-		max_heapify(a, i);
-	}	
-}
-
-void max_heapify(int a[], int i)
-{
-	int l, r, largest, temp;
-	l = LEFT(i);
-	r = RIGHT(i);
-
-	//printf("%d %d\n", a[i], i);	
-		
-	if((l < sz) && (a[l] > a[i]))
-		largest = l;
-	else
-		largest = i;
-	if((r < sz) && ( a[r] > a[largest]))
-		largest = r;
-	if(largest != i){
-		temp = a[largest];
-		a[largest] = a[i];
-		a[i] = temp;
-		/*printf("hi\n");
-		for(i = 0; i < size; ++i){
-			printf("%d ", a[i]);
-		}
-		printf("\n");*/
-		max_heapify(a, largest);
-	}	
-}
-
-void heap_sort(int a[])
-{
-	int i, temp;
-	
-	build_max_heap(a);
-	//printf("The heap is\n");
-	/*for(i = 0; i < size; ++i){
-		printf("%d ", a[i]);
-	}*/
-	//printf("\n");
-	
-	//place the biggest element which is at the root, at the end of the array
-	for(i = sz - 1; (i >= 1) && (sz > 1); --i){
-		//printf("1.sz = %d, i = %d\n", sz, i);
-		temp = a[0];
-		a[0] = a[i];
-		a[i] = temp;
-
-		/*printf("hi1\n");
-		for(i = 0; i < size; ++i){
-			printf("%d ", a[i]);
-		}
-		printf("\n");*/
-		//reduce the size of the heap as we removed the largest element
-		--sz;
-	
-		//create a heap out of the remaining elements in the heap
-		max_heapify(a, 0);
-		//printf("2.sz = %d, i = %d\n", sz, i);
 	}
 }
