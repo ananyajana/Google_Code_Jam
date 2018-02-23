@@ -4,55 +4,33 @@ Author:Ananya Jana */
 #include <stdio.h>
 #include <stdlib.h>
 
-
-#define PARENT(i)	((i - 1)/2)
-#define LEFT(i)		(2*i + 1)
-#define	RIGHT(i)	(2*i + 2)
-
-void insertion_sort(int a[], int b[], int n);
+void insertion_sort(long long int a[], long long int b[], long long int n);
 
 
 int main()
 {
-    int T, L, E, N, i, j, min_exp, overflow, max;
+    long long int T, L, E, N, i, j, min_exp, overflow, max;
     T = L = N = E = i = min_exp = overflow = 0;
-	int *N_arr, *E_arr = NULL;	// for the large dataset, a number can be of 10 digits, hence taking an array of long long integers
+	long long int *N_arr, *E_arr = NULL;	// for the large dataset, a number can be of 10 digits, hence taking an array of long long integers
 
     FILE* fp = fopen("ip.txt", "r");
 
-    fscanf(fp, "%d", &T);
+    fscanf(fp, "%lld", &T);
 
     for(int t = 1; t <= T; ++t){
 
-        fscanf(fp, "%d", &L);
+        fscanf(fp, "%lld", &L);
         // dynamically allocating an array of 2N elements and scanning the numbers from input file
-        N_arr = (int *)calloc(L, sizeof(int));
-        E_arr = (int *)calloc(L, sizeof(int));
+        N_arr = (long long int *)calloc(L, sizeof(long long int));
+        E_arr = (long long int *)calloc(L, sizeof(long long int));
         
         for(i = 0; i < L; ++i){
-        	fscanf(fp, "%d %d ", &N_arr[i], &E_arr[i]);
+        	fscanf(fp, "%lld %lld ", &N_arr[i], &E_arr[i]);
 	}
-	/*printf("original\n");
-	for(i = 0; i < L; ++i){
-        	printf( "%d ", N_arr[i]);
-        	printf( "%d\n", E_arr[i]);
-	}*/
-	
-	/*for(i = 0; i < K; ++i){
-        	printf( "%d ", arr[i]);
-	}*/
 	
 	min_exp = overflow = 0;
 	
-	//size = sz = K;
-	//heap_sort(arr);
 	insertion_sort(E_arr, N_arr, L);
-	
-	/*printf("after sorting\n");
-	for(i = 0; i < L; ++i){
-        	printf( "%d ", N_arr[i]);
-        	printf( "%d\n", E_arr[i]);
-	}*/
 	
 	if(L == 1){
 		if(N_arr[0] > E_arr[0])
@@ -78,7 +56,7 @@ int main()
 			min_exp = N_arr[L - 1] + overflow;
 	}
 	
-	printf("Case #%d: %d\n", t, min_exp);
+	printf("Case #%d: %lld\n", t, min_exp);
 	if(N_arr)
 		free(N_arr);
 	if(E_arr)
@@ -87,7 +65,7 @@ int main()
 }
 
 
-void insertion_sort(int a[], int b[], int n)
+void insertion_sort(long long int a[], long long int b[], long long int n)
 {
 	int i, j, key;
 
