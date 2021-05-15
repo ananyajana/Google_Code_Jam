@@ -22,7 +22,7 @@ def calculate_offering(n, arr):
         else:
             od[arr[i]] += 1
     
-    print(od)
+    #print(od)
 
     treat_size = 1
     count = 0
@@ -34,7 +34,8 @@ def calculate_offering(n, arr):
         # is increased in the next key else the next key would not be different
         # from the current key
 
-    print('count: ', count)
+    #print('count: ', count)
+    return count
             
 
 for t in range(T):
@@ -44,6 +45,6 @@ for t in range(T):
     t1 = tgt_list[t]
     is_anagram(s1, t1)
     '''
-    print('n_list: ', n_list)
-    print('num_list: ', num_list)
-    calculate_offering(n_list[t], num_list[t])
+    #print('n_list: ', n_list)
+    #print('num_list: ', num_list)
+    print('case #{}: {}'.format((t+1), calculate_offering(n_list[t], num_list[t])))
