@@ -79,6 +79,84 @@ def create_ordering(n, arr):
 
     return valid_str
 
+''' in create_ordering function, we note that we create the forward and back
+strings every time by iteration which may not be necessary we can create two
+different memoization tables which will take constant time to access since the
+size of the table is determined by the size of the alphabet and hence fixed'''
+# one important thing to notice is that neither the odd block nor the even
+# block can have a size of 26, but odd block size 25 and even block size 24
+# is possible
+def create_ordering2(n, arr):
+    # now let's start creating the required string dependeing on the
+    # length and number of blocks
+    valid_str = "A"
+    arr_len = len(arr)
+    for i in range(arr_len):
+        # length of the current block
+        block_len = arr[i]
+        # check if odd block
+        if (i + 1)% 2 == 1:
+            diff = None
+            if i != (arr_len - 1) and arr[i+1] > arr[i]:
+                # take the diff in size and that's what needs to e added to the
+                # last charc of the odd bloc
+                diff = arr[i+1] - arr[i]
+            # the last char of the block would be either 'A' + (block_len - 1) or 'A' + block_len - 1 + diff
+            if diff is None:
+                valid_str += forward_tb[block_len] + chr(ord('A') + block_len) 
+            else:
+                valid_str += forward_tb[block_len] + chr(ord('A') + block_len + diff) 
+        else:
+            #print('block_len: ', block_len)
+            valid_str += backward_tb[block_len] 
+    
+    return valid_str
+
+# another observation is that the two memoization tables need to be created only once
+# and hence the forward_tb and backward_tb can be global vars
+forward_tb = dict()
+backward_tb = dict()
+
+def create_memoization_table():
+    # the odd block can only start with B
+    alph_len = ord('Z') - ord('A') + 1  # length of the alphabet
+    # create a hash table for holding forward memoization
+    #forward_tb = dict()
+    #cur_str = "A"
+    cur_str = ""
+    for i in range(alph_len):
+        #cur_str += chr(ord("A") + i)
+        # we do one more trick, as we know last char of the odd block
+        # is dependent on the succeeding even block's length. Hence we
+        # keep don't fill in the last char in the memoization table
+        # beecase strings are immutable and hence we cannot change the
+        # last char of the string at the time of actually filling the block
+        # rather the last char is determinied at runtime and then filled
+        # e.g. if odd block length is 3, the hash table entry for 3 is AB
+        # and the last char whether C or something else will be filled at
+        # runtime
+        # such consideration is not needed for backward table though
+        # anothe rimportant observation is that odd block will always
+        # start with 'B' and hence the forward memization table needs to
+        # b adjusted and also the block length limitations changed accordingly
+        forward_tb[i+1] = cur_str
+        cur_str += chr(ord("B") + i)
+    
+    #print('forward memoization table:')
+    #print(forward_tb)
+
+    # create a hash table holding backward memoization
+    #backward_tb = dict()
+    #cur_str = "A"
+    cur_str = ""
+    for i in range(alph_len):
+        cur_str = chr(ord("A") + i) + cur_str
+        backward_tb[i+1] = cur_str
+    #print('backward memoization table:')
+    #print(backward_tb)
+
+create_memoization_table()
+
 for t in range(T):
     #s1 = input()
     '''
@@ -88,4 +166,5 @@ for t in range(T):
     '''
     #print('n_list: ', n_list)
     #print('num_list: ', num_list)
-    print('case #{}: {}'.format((t+1), create_ordering(n_list[t], num_list[t])))
+    #print('case #{}: {}'.format((t+1), create_ordering(n_list[t], num_list[t])))
+    print('case #{}: {}'.format((t+1), create_ordering2(n_list[t], num_list[t])))
